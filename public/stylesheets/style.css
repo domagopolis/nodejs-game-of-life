@@ -3,9 +3,9 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
-}
+h3{ text-transform: capitalize; }
+
+a { color: #00B7FF; }
 
 form ul{ padding: 0; }
 form li{ list-style: none; }

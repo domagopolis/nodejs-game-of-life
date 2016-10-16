@@ -7,7 +7,7 @@ block content
 	else
 		h3.
 			Create World
-	form#form_create_world(name="create_world", method="post", action="/createworld")
+	form#form_create_world(name="create_world", method="post", action="/createworld/")
 		input#name(type="hidden", value="#{slug}", name="slug")
 		ul
 			if !world

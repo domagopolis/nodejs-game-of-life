@@ -14,7 +14,7 @@ router.get('/', function(req, res, next) {
 	res.render('index', { "world" : false, "slug" : colour+'-'+feature+'-'+number, "randomName" : colour+' '+feature });
 });
 
-router.get('/world/:slug', function(req, res) {
+router.get('/world/:slug/', function(req, res) {
 	var MongoClient = mongodb.MongoClient;
 
 	var url = 'mongodb://localhost:27017/gameoflife';
@@ -58,7 +58,7 @@ router.get('/world/:slug', function(req, res) {
 	});
 })
 
-router.post('/createworld', function(req, res){
+router.post('/createworld/', function(req, res){
 	var MongoClient = mongodb.MongoClient;
 
 	var url = 'mongodb://localhost:27017/gameoflife';
@@ -121,7 +121,7 @@ router.post('/createworld', function(req, res){
 
 			db.close();
 
-			res.redirect("/world/"+req.body.slug);
+			res.redirect("/world/"+req.body.slug+"/");
 		}
 	});
 });
