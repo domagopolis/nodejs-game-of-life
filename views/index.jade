@@ -1,0 +1,84 @@
+extends layout
+
+block content
+	if world
+		h3.
+			#{world.name} #{world.height} X #{world.width}
+	else
+		h3.
+			Create World
+	form#form_create_world(name="create_world", method="post", action="/createworld")
+		input#name(type="hidden", value="#{slug}", name="slug")
+		ul
+			if !world
+				li
+					input#name(type="text", value="#{randomName}", name="name", placeholder="name")
+			li
+				label Food Distribution
+				select#food-rate(name="food_rate")
+					-for(var i = 0; i<=10; i++){
+					option(value="#{i/10}", selected=i/10 == world.food_rate ) #{i*10}%
+					- }
+				label Population Distribution
+				select#population-rate(name="population_rate")
+					-for(var i = 0; i<=10; i++){
+					option(value="#{i/10}", selected=i/10 == world.population_rate ) #{i*10}%
+					- }
+				label Life Expectency
+				select#life-expectency(name="life_expectency")
+					-for(var i = 10; i<=200; i++){
+					option(value="#{i}", selected=i == world.life_expectency ) #{i} years
+					- }
+				label Male-Female Ratio
+				select#sex-rate(name="sex_rate")
+					-for(var i = 0; i<=10; i++){
+					option(value="#{i/10}", selected=i/10 == world.sex_rate ) #{i*10}% - #{100-(i*10)}%
+					- }
+			li
+				label Conception Probabilty
+				select#conception-rate(name="conception_probality")
+					-for(var i = 0; i<=10; i++){
+					option(value="#{i/10}", selected=i/10 == world.conception_probality ) #{i*10}%
+					- }
+				label Twin Conception Probabilty
+				select#twin-conception-rate(name="twin_conception_probality")
+					-for(var i = 0; i<=10; i++){
+					option(value="#{i/10}", selected=i/10 == world.twin_conception_probality ) #{i*10}%
+					- }
+				label Triplet Conception Probabilty
+				select#triplet-conception-rate(name="triplet_conception_probality")
+					-for(var i = 0; i<=10; i++){
+					option(value="#{i/10}", selected=i/10 == world.triplet_conception_probality ) #{i*10}%
+					- }
+			li
+				label Width
+				select#width(name="width")
+					-for(var x = 1; x<=100; x++){
+					option(value="#{x*10}", selected=x == world.width) #{x*10}
+					- }
+				strong &nbsp;X&nbsp;
+				label Height
+				select#height(name="height")
+					-for(var y = 1; y<=100; y++){
+					option(value="#{y*10}", selected=y == world.height) #{y*10}
+					- }
+			li
+				if world
+					button(type="submit") Update World
+				else
+					button(type="submit") Create World
+	if world
+		table(class='world')
+			tbody
+				each row, i in world.plots
+					tr
+						each plot, j in row
+							if plot.food
+								td(id='cell-'+plot.x+'-'+plot.y, class='food') &nbsp;
+							else if plot.lifeform
+								if plot.lifeform.sex == 'M'
+									td(id='cell-'+plot.x+'-'+plot.y, class='lifeform-male') &nbsp;
+								else
+									td(id='cell-'+plot.x+'-'+plot.y, class='lifeform-female') &nbsp;
+							else
+								td(id='cell-'+plot.x+'-'+plot.y) &nbsp;

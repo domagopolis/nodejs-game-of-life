@@ -1,0 +1,16 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+form ul{ padding: 0; }
+form li{ list-style: none; }
+td{ background-color: #aaaaaa; width: 10px; height: 10px; }
+.lifeform-male{ background-color: blue; }
+.lifeform-female{ background-color: pink; }
+.lifeform-female.pregnant{ background-color: hotpink; }
+.food{ background-color: green; }
